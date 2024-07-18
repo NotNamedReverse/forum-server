@@ -1,13 +1,12 @@
-// server.js
 const express = require('express');
+const cors = require('cors');
 const sqlite3 = require('sqlite3').verbose();
 const bodyParser = require('body-parser');
-const cors = require('cors');
 
 const app = express();
 const db = new sqlite3.Database(':memory:');
 
-app.use(cors());
+app.use(cors({ origin: 'https://your-neocities-site.neocities.org' }));
 app.use(bodyParser.json());
 
 // Create posts table
@@ -35,7 +34,7 @@ app.post('/posts', (req, res) => {
 });
 
 // Start the server
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
